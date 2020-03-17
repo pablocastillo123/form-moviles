@@ -1,0 +1,21 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>{{data_card.formulario}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>{{data_card.nombre_categoria}}</ion-card-content>
+  
+  <ion-item>
+  	<ion-button size="medium" [routerLink]="['/resform',data_card.id]" routerDirection="backward">
+  		View
+  		<ion-icon name="eye"></ion-icon>  
+    </ion-button>
+    
+    <ion-fab horizontal="end">
+      <ion-fab-button *ngIf="state_button" (click)="delete()"
+      mode="ios" size="small" color="danger">
+        <ion-icon name="trash"></ion-icon> 
+      </ion-fab-button>  
+    </ion-fab>
+    
+  </ion-item>
+</ion-card>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-title>{{form.formulario}}</ion-title>
+  <ion-toolbar>
+      <ion-fab-button routerLink="/home" routerDirection="backward"
+         mode="ios" size="small">
+        <ion-icon name="arrow"></ion-icon> 
+      </ion-fab-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="sendForm($event)">
+  	<ion-item  *ngFor="let nom of form.nombre_input;let indice=index">
+      <ion-label>{{nom}}:</ion-label>
+      <ion-input type={{form.tipo_input[indice]}} [(ngModel)]="input_res[indice]" name="{{nom}}"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit">send</ion-button>
+  </form>
+</ion-content>

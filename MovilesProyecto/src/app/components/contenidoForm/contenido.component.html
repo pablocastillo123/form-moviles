@@ -1,0 +1,38 @@
+<ion-item>
+  <ion-label position="stacked">Nombre del Formulario<ion-text color="danger">*</ion-text></ion-label>
+  <ion-input required type="text" [(ngModel)] = "titulo_formulario"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Categoria</ion-label>
+  <ion-select placeholder="Seleccione uno" class = "my-select" (ionChange)="onChangeCategoria($event)">
+      <ion-select-option *ngFor = "let cat of category"  [value] = "cat.categoria">{{cat.categoria}}</ion-select-option>
+  </ion-select> 
+</ion-item>
+
+  <ion-item >
+    <ion-label>Sub-Categoria</ion-label>
+    <ion-select placeholder="Seleccione uno" class = "my-select" (ionChange) = "onChangeSubCategoria($event)">
+        <ion-select-option *ngFor = "let sub of subCategory" [value] = "sub">{{sub}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+<ion-item *ngFor = "let i of input">
+  <ion-label position="floating">Ingrese titulo del input Numero {{i}}</ion-label>
+  <ion-input [(ngModel)] = "titulo_input[i]"></ion-input>
+  <ion-item>
+    <ion-label>Tipo de Dato</ion-label>
+    <ion-select placeholder="Seleccione uno" class = "my-select" [(ngModel)] = "type_input[i]">
+      <div *ngFor = "let t of type">
+        <ion-select-option [value] = "t">{{t}}</ion-select-option>
+      </div>
+    </ion-select>
+  </ion-item>
+</ion-item>
+
+<ion-button (click) = "agregar()" color = "secondary">
+  Agregar
+</ion-button> 
+<ion-button (click) = "eliminar()" color = "danger">
+  Eliminar
+</ion-button>

@@ -1,0 +1,23 @@
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Start Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list *ngFor = "let d of data">
+      <ion-menu-toggle auto-hide = "true">
+        <ion-item [href] = "[d.router]">
+          <ion-icon slot = "start" [name] = "d.icon"></ion-icon>
+          <ion-label>{{ d.label }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+
+
+
+

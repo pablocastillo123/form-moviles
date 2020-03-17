@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="admin"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list lines = "full">
+
+       <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Formulario</ion-card-subtitle>
+          <ion-item >
+            <ion-input required type = "text" placheholder = "formulario" [(ngModel)] =  "formul.formulario">
+            </ion-input>
+           </ion-item>
+        </ion-card-header>
+      
+        <ion-item >
+          <ion-label>Categoria</ion-label>
+          <ion-select placeholder="Seleccione uno" [value] = "formul.nombre_categoria" class = "my-select" (ionChange) = "onChangeSubCategoria($event)">
+              <ion-select-option  [value] = "formul.nombre_categoria">{{formul.nombre_categoria}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+     
+      </ion-card>
+
+    
+      
+
+  </ion-list>
+
+  <ion-fab vertical = "bottom" horizontal = "end" slot = "fixed" color = "danger">
+    <ion-fab-button color = "danger" routerLink = "/admin" routerDirection = "forwad" (click) = "onRemove(formId)">
+      <ion-icon name = "trash">
+      </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

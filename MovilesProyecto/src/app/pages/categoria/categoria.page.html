@@ -1,0 +1,47 @@
+<app-sidemenu>
+</app-sidemenu>
+<ion-header id = "main">
+
+  <ion-toolbar>
+    <ion-buttons slot = "start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click) = "createCategory()" color="secondary" [disabled] = "disable">
+        <ion-icon name="add-outline"></ion-icon>      
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Categoria</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>
+      Ingrese Nombre de la categoria a crear
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-input required type = "text" [(ngModel)] = "categoria_valor"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Ingrese Nombre de la Subcategoria a crear
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-input required type = "text" [(ngModel)] = "subcategory"></ion-input>
+  </ion-item>
+
+
+</ion-content>
+
+
+
+
+
+

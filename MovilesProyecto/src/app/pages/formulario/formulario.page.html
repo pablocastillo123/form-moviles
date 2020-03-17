@@ -1,0 +1,30 @@
+<app-sidemenu>
+</app-sidemenu>
+
+
+<ion-header id = "main">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Formulario</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [disabled] = "disable" (click) = "create()">
+        <ion-icon name="download-outline"></ion-icon>      
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <app-contenido (childEvent) = "disable=$event" (formulario) = "form=$event">
+
+    </app-contenido>
+
+    
+
+
+</ion-content>
+
