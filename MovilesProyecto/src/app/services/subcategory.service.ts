@@ -30,8 +30,6 @@ export class SubcategoryService {
     ))
    }
 
-
-
    getSubCategories () {
       return this.subcategories
    }

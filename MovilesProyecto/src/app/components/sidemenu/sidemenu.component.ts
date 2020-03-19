@@ -39,8 +39,8 @@ export class SidemenuComponent implements OnInit {
           router: "/estadisticas"
         },
         {
-          label: "Cerrar Sesion",
-          icon: "log-out",
+          label: "Crear Formulario",
+          icon: "log-duplicate-outline",
           router: "/login"
         }
       );
