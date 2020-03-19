@@ -43,9 +43,7 @@ export class DetailsPage implements OnInit {
     
     this.categorias.getCategories().subscribe(res => {
       this.categories = res
-      console.log(this.categories)
-
-    })
+    })    
   }
 
   async loadForm () {
