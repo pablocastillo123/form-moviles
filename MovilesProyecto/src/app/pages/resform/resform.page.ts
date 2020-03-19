@@ -77,19 +77,8 @@ export class ResformPage implements OnInit {
 
       this.data_estadis =  this.estadis.getDataEstadisForm(this.form.id).subscribe( res =>{
         console.log(res)
-        let data_estadis = {
-          id_estadis: res.id_estadis,
-          formulario: res.formulario,
-          cont_form: res.cont_form
-        }
         
-        data_estadis.cont_form = data_estadis.cont_form + 1
-        console.log(data_estadis)
-        
-        this.estadis.updateForm(data_estadis,this.form.id)
-
-
-
+        this.estadis.updateForm(res,this.form.id)
         return res;
       })
 
