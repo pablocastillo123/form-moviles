@@ -45,12 +45,12 @@ export class TabComponent implements OnInit {
         label: "Perfil"
       },
       {
-        tab: "estadisticas",
+        tab: "home",
         icon: "apps-outline",
-        label: "Formularios"
+        label: "Home"
       },
       {
-        tab: "crear",
+        tab: "login",
         icon: "exit-outline",
         label: "Cerrar Sesion"
       }

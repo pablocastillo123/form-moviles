@@ -1,8 +1,7 @@
-import { Validators } from '@angular/forms';
 import { FormService } from './../../services/form.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ActivatedRoute,Router } from '@angular/router';
+import { NavController,LoadingController } from '@ionic/angular';
 import { Type } from '../../interface/form.interface';
 import { User } from  '../../shared/user.class';
 import { UtilToolService } from '../../services/utiltool.service'
@@ -13,9 +12,11 @@ import { UtilToolService } from '../../services/utiltool.service'
   styleUrls: ['./resform.page.scss'],
 })
 export class ResformPage implements OnInit {
-  user = new User()
+  private user = new User();
+  private input_res = [];
+  private form_id = '';
 
-  form:Type = {
+  private form:Type = {
     id: '',
   	formulario: '',
   	nombre_categoria: '',
@@ -23,26 +24,30 @@ export class ResformPage implements OnInit {
     tipo_input:[]
   }
 
-  
-  input_res = [];
-  form_id = '';
-
   constructor(
   	private route: ActivatedRoute,private nav:NavController,
-  	private formService: FormService, private utilTool:UtilToolService
+    private formService: FormService, private utilTool:UtilToolService,
+    private loadingController:LoadingController,private router: Router
   ) { }
 
   ngOnInit() {
-  	this.form_id = this.route.snapshot.params['id'];
+  	this.initData()
+  }
+
+  async initData(){
+    const loading = await this.loadingController.create({
+      message : 'Loading.....'
+    })
+    await loading.present()
+
+    this.form_id = this.route.snapshot.params['id'];
     if(this.form_id){
       this.formService.getForm(this.form_id).subscribe(res => {
         this.form = res;
         this.form.id = this.form_id;
-        console.log(res)
       });
     }
-
-    
+    loading.dismiss();
   }
 
   sendForm(){
@@ -56,8 +61,6 @@ export class ResformPage implements OnInit {
       input_value: this.input_res
     }
 
-    console.log(user_form_res)
-
     const input_long = user_form_res.input_value.length;
     const nom_input_long = user_form_res.nombre_input.length;
 
@@ -66,7 +69,9 @@ export class ResformPage implements OnInit {
       
       this.utilTool.presentAlert('error','campos vacios','ok');
     }else{
-      this.utilTool.loading(this.formService.sendForm(user_form_res,res_form_id))
+      this.formService.sendForm(user_form_res,res_form_id)
+      this.utilTool.presentAlert('Mensage','Operacion Exitosa','ok');
+      this.router.navigateByUrl('/user/tabs/home')
     }
   }
 

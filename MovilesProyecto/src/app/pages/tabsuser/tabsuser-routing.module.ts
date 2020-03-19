@@ -20,12 +20,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'estadisticas',
+        path: 'home',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../estadisticas/estadisticas.module').then(m => m.EstadisticasPageModule)
+              import('../home/home.module').then(m => m.HomePageModule)
           }
         ]
       },

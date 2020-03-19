@@ -24,7 +24,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.userform.getForms().subscribe(res =>{
       this.collec_form = res;
-      console.log(res)
     })
    
   }

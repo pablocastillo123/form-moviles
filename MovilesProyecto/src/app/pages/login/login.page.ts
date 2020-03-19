@@ -39,7 +39,8 @@ export class LoginPage implements OnInit {
 
     if(user) {
       if (user.user.email != 'admin@gmail.com') {
-        this.router.navigateByUrl('/home')
+        window.localStorage.setItem('email', this.user.email);
+        this.router.navigateByUrl('/user/tabs/home')
     }else {
       this.router.navigateByUrl('/admin')
     }
