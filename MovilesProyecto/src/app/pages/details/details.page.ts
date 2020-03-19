@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 import { NavController, LoadingController, AlertController } from '@ionic/angular' 
 
@@ -31,13 +31,22 @@ export class DetailsPage implements OnInit {
   constructor(private route : ActivatedRoute, 
     private form : FormService, 
     private loadingController : LoadingController,
-    private alertController : AlertController ) { }
+    private alertController : AlertController,
+    private categorias : CategoriaService,
+    private router : Router) { }
 
   ngOnInit() {
     this.formId = this.route.snapshot.params["id"]
     if(this.formId) {
       this.loadForm()
     }
+    this.categorias.getCategories().subscribe(res => {
+      this.categories = res
+      console.log(this.categories)
+
+    })
+
+    
   }
 
   async loadForm () {
@@ -68,6 +77,16 @@ export class DetailsPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  modificar () {
+    
+    if(this.formId) {
+      this.form.updateForm(this.formul , this.formId).then(() => {
+        this.router.navigateByUrl('/admin/tabs/formulario')
+      })
+    }
+
   }
 
 

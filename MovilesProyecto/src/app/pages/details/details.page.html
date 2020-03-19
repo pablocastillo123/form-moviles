@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Detalles</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="admin"></ion-back-button>
+      <ion-back-button defaultHref="/admin/tabs/formulario"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -28,8 +28,11 @@
         </ion-item>
      
       </ion-card>
-
   </ion-list>
+
+  <ion-button (click) = "modificar()">
+    Modificar
+  </ion-button>
 
   <ion-fab vertical = "bottom" horizontal = "end" slot = "fixed" color = "danger">
     <ion-fab-button color = "danger" routerLink = "/admin/tabs/formulario" routerDirection = "forwad" (click) = "onRemove(formId)">
