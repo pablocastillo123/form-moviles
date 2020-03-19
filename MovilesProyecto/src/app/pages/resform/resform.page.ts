@@ -5,6 +5,8 @@ import { NavController,LoadingController } from '@ionic/angular';
 import { Type } from '../../interface/form.interface';
 import { User } from  '../../shared/user.class';
 import { UtilToolService } from '../../services/utiltool.service'
+import { EstadisticaService } from 'src/app/services/estadistica.service';
+
 
 @Component({
   selector: 'app-resform',
@@ -15,6 +17,7 @@ export class ResformPage implements OnInit {
   private user = new User();
   private input_res = [];
   private form_id = '';
+  private data_estadis
 
   private form:Type = {
     id: '',
@@ -27,7 +30,8 @@ export class ResformPage implements OnInit {
   constructor(
   	private route: ActivatedRoute,private nav:NavController,
     private formService: FormService, private utilTool:UtilToolService,
-    private loadingController:LoadingController,private router: Router
+    private loadingController:LoadingController,private router: Router,
+    private estadis:EstadisticaService
   ) { }
 
   ngOnInit() {
@@ -54,7 +58,7 @@ export class ResformPage implements OnInit {
     let res_form_id = this.utilTool.generateId()
     let user_form_res = {
       id_form: this.form.id,
-      id_res_form:res_form_id,
+      id_res_form: res_form_id,
       formulario: this.form.formulario,
       nombre_categoria: this.form.nombre_categoria,
       nombre_input: this.form.nombre_input,
@@ -69,6 +73,27 @@ export class ResformPage implements OnInit {
       
       this.utilTool.presentAlert('error','campos vacios','ok');
     }else{
+      
+
+      this.data_estadis =  this.estadis.getDataEstadisForm(this.form.id).subscribe( res =>{
+        console.log(res)
+        let data_estadis = {
+          id_estadis: res.id_estadis,
+          formulario: res.formulario,
+          cont_form: res.cont_form
+        }
+        
+        data_estadis.cont_form = data_estadis.cont_form + 1
+        console.log(data_estadis)
+        
+        this.estadis.updateForm(data_estadis,this.form.id)
+
+
+
+        return res;
+      })
+
+
       this.formService.sendForm(user_form_res,res_form_id)
       this.utilTool.presentAlert('Mensage','Operacion Exitosa','ok');
       this.router.navigateByUrl('/user/tabs/home')

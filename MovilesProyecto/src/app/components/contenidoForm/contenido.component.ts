@@ -1,14 +1,10 @@
+import { UtilToolService } from './../../services/utiltool.service';
 import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, Input , DoCheck} from '@angular/core';
 import { AlertController } from '@ionic/angular';
-
 import {Category} from "../../interface/category"
-
 import {SubCategory} from "../../interface/subcategory"
-
 import { SubcategoryService } from "../../services/subcategory.service"
-
 import { CategoriaService } from '../../services/categoria.service'
-
 import { Type } from '../../interface/form.interface'
 
 
@@ -23,17 +19,12 @@ export class ContenidoComponent implements OnInit, DoCheck {
   public input : Array<Number> = []
 
   @Output() public childEvent = new EventEmitter();
-
   @Output() public formulario = new EventEmitter();
 
   public titulo_formulario : string 
-
   public titulo_input = []
-
   public valor_categoria : string 
-
   public type_input = []
-
   public disable : boolean = true
 
   public form : Type = {
@@ -44,18 +35,15 @@ export class ContenidoComponent implements OnInit, DoCheck {
   }
 
   public subCategory = []
-
   public category : Category[] = []
-
   public type : Array<String> = ['Number' , 'Date', 'String', 'Time']
-
   public idSub
 
-  constructor(private alertController: AlertController, private crud: CategoriaService, private sub : SubcategoryService) { 
+  constructor(private alertController: AlertController, private utilTool:UtilToolService,
+    private crud: CategoriaService, private sub : SubcategoryService) { 
   }
 
   onChangeCategoria(value){
-    console.log(value.detail.value);
     this.valor_categoria = value.detail.value
   }
   
@@ -70,6 +58,7 @@ export class ContenidoComponent implements OnInit, DoCheck {
     })
 
     this.form = {
+      id : this.utilTool.generateId(),
       formulario: this.titulo_formulario,
       nombre_input : [...inputSend], 
       tipo_input : [...typeInput],
@@ -81,7 +70,6 @@ export class ContenidoComponent implements OnInit, DoCheck {
       this.subCategory = res
     })
 
-    console.log(this.form)
   }
 
   

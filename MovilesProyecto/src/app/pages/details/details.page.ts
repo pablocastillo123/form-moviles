@@ -17,7 +17,7 @@ import { CategoriaService } from '../../services/categoria.service'
 })
 export class DetailsPage implements OnInit {
 
-    formul : Type = {
+  formul : Type = {
     formulario: '',
     nombre_input : [''],
     tipo_input : [''],
@@ -40,13 +40,12 @@ export class DetailsPage implements OnInit {
     if(this.formId) {
       this.loadForm()
     }
+    
     this.categorias.getCategories().subscribe(res => {
       this.categories = res
       console.log(this.categories)
 
     })
-
-    
   }
 
   async loadForm () {
@@ -66,7 +65,7 @@ export class DetailsPage implements OnInit {
   }
 
   onChangeSubCategoria (e) {
-    console.log(e.target.textContent)
+    console.log(e.target)
   }
 
   async alerta(mensaje) {
@@ -79,14 +78,14 @@ export class DetailsPage implements OnInit {
     await alert.present();
   }
 
-  modificar () {
-    
+  modificar(){
     if(this.formId) {
-      this.form.updateForm(this.formul , this.formId).then(() => {
+
+
+        this.form.updateForm(this.formul , this.formId).then(() => {
         this.router.navigateByUrl('/admin/tabs/formulario')
       })
     }
-
   }
 
 
