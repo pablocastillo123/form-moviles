@@ -29,13 +29,7 @@ export class TabComponent implements OnInit {
           tab: "crear",
           icon: "create-outline",
           label: "Crear"
-        },
-        {
-          tab: "tab4",
-          icon: "people-outline",
-          label: "Cerrar Sesion"
-        },
-        
+        }
       )
     }else {
       this.data.push(
@@ -48,11 +42,6 @@ export class TabComponent implements OnInit {
         tab: "estadisticas",
         icon: "apps-outline",
         label: "Formularios"
-      },
-      {
-        tab: "crear",
-        icon: "exit-outline",
-        label: "Cerrar Sesion"
       }
       )
     }

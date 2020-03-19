@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import {AngularFireModule} from '@angular/fire';
@@ -14,7 +15,6 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from './../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 
-import { SidemenuComponent } from './components/sidemenu/sidemenu.component'
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module'
 
@@ -27,7 +27,7 @@ import { SharedModule } from './shared/shared.module'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    SharedModule,
+    SharedModule
   ],
 
   providers: [

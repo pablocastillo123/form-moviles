@@ -10,13 +10,17 @@ import { EstadisticasPage } from './estadisticas.page';
 
 import { SharedModule } from '../../shared/shared.module'
 
+import { ChartsModule } from 'ng2-charts';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     EstadisticasPageRoutingModule,
-    SharedModule
+    SharedModule,
+    ChartsModule
   ],
   declarations: [EstadisticasPage]
 })
