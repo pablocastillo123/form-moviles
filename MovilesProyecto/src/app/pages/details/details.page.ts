@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router'
 
-import { NavController, LoadingController } from '@ionic/angular' 
+import { NavController, LoadingController, AlertController } from '@ionic/angular' 
 
 import {  Type } from '../../interface/form.interface'
 
@@ -28,10 +28,10 @@ export class DetailsPage implements OnInit {
 
   public categories = []
 
-  constructor(private route : ActivatedRoute, private nav: NavController, 
+  constructor(private route : ActivatedRoute, 
     private form : FormService, 
     private loadingController : LoadingController,
-    private categoriaServ : CategoriaService ) { }
+    private alertController : AlertController ) { }
 
   ngOnInit() {
     this.formId = this.route.snapshot.params["id"]
@@ -53,10 +53,21 @@ export class DetailsPage implements OnInit {
 
   onRemove (formul : string) {
     this.form.removeForm(formul)
+    this.alerta('Eliminado satisfactoriamente')
   }
 
   onChangeSubCategoria (e) {
     console.log(e.target.textContent)
+  }
+
+  async alerta(mensaje) {
+    const alert = await this.alertController.create({
+      header: 'Exito',
+      message: mensaje,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 

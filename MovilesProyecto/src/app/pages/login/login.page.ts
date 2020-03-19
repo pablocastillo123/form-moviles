@@ -39,9 +39,9 @@ export class LoginPage implements OnInit {
 
     if(user) {
       if (user.user.email != 'admin@gmail.com') {
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl('/user/tabs/perfil')
     }else {
-      this.router.navigateByUrl('/admin')
+      this.router.navigateByUrl('/admin/tabs/formulario')
     }
   } else {
     this.alerta('Usuario no econtrado o contraseña incorrecta')

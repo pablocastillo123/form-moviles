@@ -51,7 +51,6 @@ export class ContenidoComponent implements OnInit, DoCheck {
 
   public idSub
 
-
   constructor(private alertController: AlertController, private crud: CategoriaService, private sub : SubcategoryService) { 
   }
 
@@ -81,7 +80,11 @@ export class ContenidoComponent implements OnInit, DoCheck {
     this.sub.getSubCategories().subscribe(res => {
       this.subCategory = res
     })
+
+    console.log(this.form)
   }
+
+  
 
   ngOnInit() {
 
