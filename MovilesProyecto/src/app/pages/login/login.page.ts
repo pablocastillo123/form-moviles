@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
         window.localStorage.setItem('email', this.user.email);
         this.router.navigateByUrl('/user/tabs/home')
     }else {
-      this.router.navigateByUrl('/admin')
+      this.router.navigateByUrl('/admin/tabs/formulario')
     }
   } else {
     this.alerta('Usuario no econtrado o contraseña incorrecta')
