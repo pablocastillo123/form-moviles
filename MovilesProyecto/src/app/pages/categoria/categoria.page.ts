@@ -42,7 +42,7 @@ export class CategoriaPage implements OnInit {
       categoria : this.categoria_valor,
     }
     this.categoria.addCategory(this.category).then(() => {
-      this.router.navigateByUrl("/admin")
+      this.router.navigateByUrl("/admin/tabs/formulario")
     })
     this.categoria_valor = ""
     this.subcategory = ""

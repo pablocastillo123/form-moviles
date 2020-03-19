@@ -39,8 +39,8 @@ export class FormService {
     return this.formCollection.doc<Type>(id).update(form)
   }
 
-  addForm (input:Type, id:string) {
-    return this.formCollection.doc(id).set(input) 
+  addForm (input:Type,) {
+    return this.formCollection.add(input) 
   }
 
   removeForm (id: string) {

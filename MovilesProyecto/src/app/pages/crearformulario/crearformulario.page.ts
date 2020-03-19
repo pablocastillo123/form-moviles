@@ -23,19 +23,7 @@ export class CrearformularioPage implements OnInit {
   }
 
   createForm () {
-      let data_estadis = {
-        id_estadis: this.form.id,
-        formulario: this.form.formulario,
-        cont_form: 0
-      }
-
-      console.log(data_estadis)
-      console.log(this.form)
-
-
-      this.estadis.setData(data_estadis,this.form.id)
-
-      this.formulario.addForm(this.form,this.form.id) 
+      this.formulario.addForm(this.form) 
       this.alerta('Creado Satisfactoriamente') 
       this.router.navigateByUrl("/admin/tabs/formulario")
   }

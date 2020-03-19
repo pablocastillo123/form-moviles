@@ -73,7 +73,6 @@ export class ContenidoComponent implements OnInit, DoCheck {
     })
 
     this.form = {
-      id : this.utilTool.generateId(),
       formulario: this.titulo_formulario,
       nombre_input : [...inputSend], 
       tipo_input : [...typeInput],

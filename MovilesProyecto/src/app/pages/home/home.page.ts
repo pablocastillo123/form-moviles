@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { UtilToolService } from './../../services/utiltool.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -12,13 +13,13 @@ import { Type } from '../../interface/form.interface';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  
+  private result 
   public collec_form: Type[];
   public button_user_admin: boolean = false;
 
   constructor(
-    private menuCtrl : MenuController,private utilTool:UtilToolService,
-    private firestore: AngularFirestore,private userform : FormService
+    private menuCtrl : MenuController,private utilTool:UtilToolService,private router:Router,
+    private firestore: AngularFirestore,private userform : FormService,private afAuth : AngularFireAuth
   ){}
 
   ngOnInit() {
@@ -30,6 +31,12 @@ export class HomePage implements OnInit {
   
   toggleMenu () {
     this.menuCtrl.toggle()
+  }
+
+  onLogout () {
+    this.afAuth.auth.signOut()
+    this.router.navigateByUrl('/login')
+    console.log(this.result)
   }
 
 }
