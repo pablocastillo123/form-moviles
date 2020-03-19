@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 import { Type } from '../../interface/form.interface';
 import { User } from  '../../shared/user.class';
 import { UtilToolService } from '../../services/utiltool.service'
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-resform',
@@ -29,21 +30,31 @@ export class ResformPage implements OnInit {
 
   constructor(
   	private route: ActivatedRoute,private nav:NavController,
-  	private formService: FormService, private utilTool:UtilToolService
+    private formService: FormService, private utilTool:UtilToolService,
+    private loadingController:LoadingController
   ) { }
 
   ngOnInit() {
-  	this.form_id = this.route.snapshot.params['id'];
+  	this.initData()
+  }
+
+  async initData(){
+    const loading = await this.loadingController.create({
+      message : 'Loading.....'
+    })
+    await loading.present()
+
+    this.form_id = this.route.snapshot.params['id'];
     if(this.form_id){
       this.formService.getForm(this.form_id).subscribe(res => {
         this.form = res;
         this.form.id = this.form_id;
-        console.log(res)
       });
     }
-
-    
+    loading.dismiss();
   }
+
+  
 
   sendForm(){
     let res_form_id = this.utilTool.generateId()
@@ -66,7 +77,8 @@ export class ResformPage implements OnInit {
       
       this.utilTool.presentAlert('error','campos vacios','ok');
     }else{
-      this.utilTool.loading(this.formService.sendForm(user_form_res,res_form_id))
+      this.formService.sendForm(user_form_res,res_form_id)
+      this.utilTool.presentAlert('Mensage','Operacion Exitosa','ok');
     }
   }
 

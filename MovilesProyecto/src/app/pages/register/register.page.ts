@@ -6,7 +6,7 @@ import { UtilToolService } from '../../services/utiltool.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument} from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,7 @@ export class RegisterPage {
 
   constructor(
     private authSvc: AuthService,private router: Router,private utilTool:UtilToolService,
-    private formBuilder: FormBuilder,private db: AngularFirestore
+    private formBuilder: FormBuilder,private db: AngularFirestore,private loadingController:LoadingController
     ){}
 
   registerForm = this.formBuilder.group({
@@ -46,7 +46,7 @@ export class RegisterPage {
         this.utilTool.presentAlert('error','Direccion de email invalida','ok');
         }
 
-        if(reg.get('age').value >120 && reg.get('age').value == 0){
+        if(reg.get('age').value > 120 || reg.get('age').value === 0){
           this.utilTool.presentAlert('error','La edad debe ser menor de 120','ok');
         }
         
@@ -61,6 +61,12 @@ export class RegisterPage {
 
 
   async register(){
+
+    const loading = await this.loadingController.create({
+      message : 'Loading.....'
+    })
+    await loading.present()
+
       try{
         const id_user = this.utilTool.generateId();
         const user = await this.authSvc.onRegister(this.user);
@@ -71,8 +77,7 @@ export class RegisterPage {
           last_name:this.user.last_name,
           email:this.user.email,
           age:this.user.age,
-          //sexo:this.user_sexo
-          //agregar user_sexo
+          sexo:this.user_sexo
         }).then(res => console.log(res)).catch(err => console.log(err));
 
         if(user){
@@ -80,19 +85,17 @@ export class RegisterPage {
         }
       }catch(error){
         this.utilTool.presentAlert('Error',error,'ok');
-      }
+
+      }finally{
+      loading.dismiss();
+    }
   }
 
-  selectSexo(sexo_opction){
-    this.user_sexo = sexo_opction;
-    console.log(sexo_opction.detail.value);
-    console.log(sexo_opction);
-    console.log(sexo_opction.toElement.value);
+  value_sexo(e){
+    this.user_sexo = e.target.value;
   }
 
    verifiEmail(){
-    var campo:any;
-
     var coll_fb  = this.db.collection('usuario',ref => 
     ref.where('email','==',this.registerForm.get('email').value)).snapshotChanges().pipe(
       map(actions =>{
