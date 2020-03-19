@@ -3,13 +3,15 @@ import { AlertController } from '@ionic/angular';
 
 import {Category} from "../../interface/category"
 
-import {SubCategory} from "../../interface/subcategory"
 
 import { SubcategoryService } from "../../services/subcategory.service"
 
 import { CategoriaService } from '../../services/categoria.service'
 
 import { Type } from '../../interface/form.interface'
+
+import {  GetSubByIdService } from '../../services/get-sub-by-id.service'
+
 
 
 @Component({
@@ -49,14 +51,23 @@ export class ContenidoComponent implements OnInit, DoCheck {
 
   public type : Array<String> = ['Number' , 'Date', 'String', 'Time']
 
-  public idSub
 
-  constructor(private alertController: AlertController, private crud: CategoriaService, private sub : SubcategoryService) { 
+  public valorSub = []
+
+
+  constructor(private alertController: AlertController, 
+    private crud: CategoriaService, 
+    private sub : SubcategoryService,
+    private getSub : GetSubByIdService) { 
   }
 
   onChangeCategoria(value){
     console.log(value.detail.value);
     this.valor_categoria = value.detail.value
+    this.getSub.getSubcategoryByCategory(this.valor_categoria).subscribe(res => {
+      this.valorSub = res
+    })
+   
   }
   
   ngDoCheck(): void {
@@ -75,14 +86,12 @@ export class ContenidoComponent implements OnInit, DoCheck {
       tipo_input : [...typeInput],
       nombre_categoria: this.valor_categoria
     }
+
     this.formulario.emit(this.form)
 
-    this.sub.getSubCategories().subscribe(res => {
-      this.subCategory = res
-    })
 
-    console.log(this.form)
   }
+
 
   
 

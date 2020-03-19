@@ -8,7 +8,6 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 
-import { SidemenuComponent } from '../../components/sidemenu/sidemenu.component'
 import { CardformComponent } from '../../components/cardform/cardform.component';
 
 import {SharedModule} from '../../shared/shared.module'

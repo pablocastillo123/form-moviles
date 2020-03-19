@@ -35,7 +35,7 @@ export class SubcategoryService {
    }
 
    getSubcategorie (id) {
-    return this.subcategoryCollection.doc<SubCategory>(id).valueChanges()
+    return this.subcategoryCollection.doc(id).valueChanges()
    }
  
 
