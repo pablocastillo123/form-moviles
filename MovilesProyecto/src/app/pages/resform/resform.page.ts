@@ -1,12 +1,10 @@
-import { Validators } from '@angular/forms';
 import { FormService } from './../../services/form.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ActivatedRoute,Router } from '@angular/router';
+import { NavController,LoadingController } from '@ionic/angular';
 import { Type } from '../../interface/form.interface';
 import { User } from  '../../shared/user.class';
 import { UtilToolService } from '../../services/utiltool.service'
-import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-resform',
@@ -14,9 +12,11 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./resform.page.scss'],
 })
 export class ResformPage implements OnInit {
-  user = new User()
+  private user = new User();
+  private input_res = [];
+  private form_id = '';
 
-  form:Type = {
+  private form:Type = {
     id: '',
   	formulario: '',
   	nombre_categoria: '',
@@ -24,14 +24,10 @@ export class ResformPage implements OnInit {
     tipo_input:[]
   }
 
-  
-  input_res = [];
-  form_id = '';
-
   constructor(
   	private route: ActivatedRoute,private nav:NavController,
     private formService: FormService, private utilTool:UtilToolService,
-    private loadingController:LoadingController
+    private loadingController:LoadingController,private router: Router
   ) { }
 
   ngOnInit() {
@@ -54,8 +50,6 @@ export class ResformPage implements OnInit {
     loading.dismiss();
   }
 
-  
-
   sendForm(){
     let res_form_id = this.utilTool.generateId()
     let user_form_res = {
@@ -67,8 +61,6 @@ export class ResformPage implements OnInit {
       input_value: this.input_res
     }
 
-    console.log(user_form_res)
-
     const input_long = user_form_res.input_value.length;
     const nom_input_long = user_form_res.nombre_input.length;
 
@@ -79,6 +71,7 @@ export class ResformPage implements OnInit {
     }else{
       this.formService.sendForm(user_form_res,res_form_id)
       this.utilTool.presentAlert('Mensage','Operacion Exitosa','ok');
+      this.router.navigateByUrl('/user/tabs/home')
     }
   }
 

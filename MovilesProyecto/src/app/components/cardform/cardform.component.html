@@ -1,13 +1,12 @@
 <ion-card>
-  <ion-card-header>
-    <ion-card-title>{{data_card.formulario}}</ion-card-title>
+  <ion-card-header class="header">
+    <ion-card-title class="text">{{data_card.formulario}}</ion-card-title>
   </ion-card-header>
-  <ion-card-content>{{data_card.nombre_categoria}}</ion-card-content>
+  <ion-card-content class="text">{{data_card.nombre_categoria}}</ion-card-content>
   
   <ion-item>
-  	<ion-button size="medium" [routerLink]="['/resform',data_card.id]" routerDirection="backward">
+  	<ion-button color="medium" size="medium" [routerLink]="['/resform',data_card.id]" routerDirection="backward">
   		View
-  		<ion-icon name="eye"></ion-icon>  
     </ion-button>
     
     <ion-fab horizontal="end">
