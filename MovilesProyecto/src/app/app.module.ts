@@ -18,6 +18,8 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component'
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module'
 
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -25,7 +27,7 @@ import { SharedModule } from './shared/shared.module'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    SharedModule
+    SharedModule,
   ],
 
   providers: [

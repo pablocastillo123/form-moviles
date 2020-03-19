@@ -4,7 +4,7 @@ import { Router, NavigationExtras  } from '@angular/router'
 import { AuthService} from '../../services/auth.service'
 import { User } from '../../shared/user.class'
 import { AlertController, NavController } from '@ionic/angular';
-import { AdminPage } from '../admin/admin.page';
+
 
 @Component({
   selector: 'app-login',
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
       this.router.navigateByUrl('/admin')
     }
   } else {
-    this.alerta('Usuario no econtrado')
+    this.alerta('Usuario no econtrado o contraseña incorrecta')
   }
     }
   }

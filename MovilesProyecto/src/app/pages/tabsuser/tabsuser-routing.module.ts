@@ -25,7 +25,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../Estadisticas/tab2.module').then(m => m.Tab2PageModule)
+              import('../estadisticas/estadisticas.module').then(m => m.EstadisticasPageModule)
           }
         ]
       },
@@ -35,7 +35,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../Crear/tab3.module').then(m => m.Tab3PageModule)
+              import('../home/home.module').then(m => m.HomePageModule)
           }
         ]
       },

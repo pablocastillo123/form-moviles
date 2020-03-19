@@ -18,8 +18,8 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    path: 'user',
+    loadChildren: () => import('./pages/tabsuser/tabsuser.module').then( m => m.TabsuserPageModule),
     // canActivate: [AuthGuard]
   },  
   {
@@ -63,6 +63,11 @@ const routes: Routes = [
     path: 'details',
     loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
+  {
+    path: 'crearformulario',
+    loadChildren: () => import('./pages/crearformulario/crearformulario.module').then( m => m.CrearformularioPageModule)
+  },
+
 
 
 ];

@@ -4,20 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EstadisticasPageRoutingModule } from './estadisticas-routing.module';
+import { CrearformularioPageRoutingModule } from './crearformulario-routing.module';
 
-import { EstadisticasPage } from './estadisticas.page';
+import { CrearformularioPage } from './crearformulario.page';
 
 import { SharedModule } from '../../shared/shared.module'
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EstadisticasPageRoutingModule,
+    CrearformularioPageRoutingModule,
     SharedModule
   ],
-  declarations: [EstadisticasPage]
+  declarations: [CrearformularioPage]
 })
-export class EstadisticasPageModule {}
+export class CrearformularioPageModule {}

@@ -8,18 +8,13 @@ import { FormularioPageRoutingModule } from './formulario-routing.module';
 
 import { FormularioPage } from './formulario.page';
 
-import {ContenidoComponent } from '../../components/contenidoForm/contenido.component'
-
-import { SharedModule } from "../../shared/shared.module"
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     FormularioPageRoutingModule,
-    SharedModule
   ],
-  declarations: [FormularioPage, ContenidoComponent]
+  declarations: [FormularioPage]
 })
 export class FormularioPageModule {}

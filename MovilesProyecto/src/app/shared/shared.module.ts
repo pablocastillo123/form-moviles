@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { SidemenuComponent } from '../components/sidemenu/sidemenu.component'
+
 import { RouterModule } from '@angular/router';
 
 import { TabComponent } from '../components/tab/tab.component'
 
+import { ContenidoComponent } from '../components/contenidoForm/contenido.component'
+
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
-  declarations: [SidemenuComponent, TabComponent],
+  declarations: [TabComponent, ContenidoComponent],
   imports: [
     CommonModule,
     IonicModule,
     RouterModule,
+    FormsModule
   ],
   exports : [
-    SidemenuComponent,
-    TabComponent
+    TabComponent,
+    ContenidoComponent
   ]
 })
 export class SharedModule { }
