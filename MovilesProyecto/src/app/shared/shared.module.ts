@@ -4,16 +4,19 @@ import { IonicModule } from '@ionic/angular';
 import { SidemenuComponent } from '../components/sidemenu/sidemenu.component'
 import { RouterModule } from '@angular/router';
 
+import { TabComponent } from '../components/tab/tab.component'
+
 
 @NgModule({
-  declarations: [SidemenuComponent],
+  declarations: [SidemenuComponent, TabComponent],
   imports: [
     CommonModule,
     IonicModule,
     RouterModule,
   ],
   exports : [
-    SidemenuComponent
+    SidemenuComponent,
+    TabComponent
   ]
 })
 export class SharedModule { }
