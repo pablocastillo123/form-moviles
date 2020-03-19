@@ -1,12 +1,6 @@
-//Normal inports
 import { Injectable } from '@angular/core';
-
 import  {AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore/'
-
-//Interfaces
 import { Type } from '../interface/form.interface' 
-
-//Tools
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
@@ -45,8 +39,8 @@ export class FormService {
     return this.formCollection.doc<Type>(id).update(form)
   }
 
-  addForm (input : Type) {
-    return this.formCollection.add(input) 
+  addForm (input:Type, id:string) {
+    return this.formCollection.doc(id).set(input) 
   }
 
   removeForm (id: string) {
@@ -60,5 +54,6 @@ export class FormService {
   getResFom(){
     return this.db.collection('resform')
   }
+
 
 }

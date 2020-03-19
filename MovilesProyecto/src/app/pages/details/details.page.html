@@ -22,8 +22,10 @@
       
         <ion-item >
           <ion-label>Categoria</ion-label>
-          <ion-select placeholder="Seleccione uno" [value] = "formul.nombre_categoria" class = "my-select" (ionChange) = "onChangeSubCategoria($event)">
-              <ion-select-option  [value] = "formul.nombre_categoria">{{formul.nombre_categoria}}</ion-select-option>
+          <ion-select placeholder="Seleccione uno"  (ionChange) = "onChangeSubCategoria($event)">
+              <div *ngFor="let cat of categories">
+                <ion-select-option  [value] = "cat">{{cat.categoria}}</ion-select-option>
+              </div> 
           </ion-select>
         </ion-item>
      
